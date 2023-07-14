@@ -31,6 +31,24 @@ jobs:
           APK=$(find . -name '*arm64-v8a*.apk')
           APK=$(dirname $APK)
           echo "APK=$APK" >> $GITHUB_ENV
+      - uses: r0adkll/sign-android-release@v1
+        id: sign_app
+        with:
+          releaseDirectory: ${{ env.APK }}
+          signingKeyBase64: ${{ secrets.SIGNING_KEY }}
+          alias: ${{ secrets.KEY_ALIAS }}
+          keyStorePassword: ${{ secrets.KEY_STORE_PASSWORD }}
+          keyPassword: ${{ secrets.KEY_PASSWORD }}
+      - name: Clean Up
+        run: |
+          cd ${{ env.APK }}
+          rm signingKey.jks
+          rm $(ls | grep -v '\-signed')
+          for file in tuic5*.apk; do
+              new_file="${file/NB4A/CB4A}"
+              new_file="${new_file//unsigned-/}"
+              mv "$file" "$new_file"
+          done
       - uses: actions/upload-artifact@v2
         with:
           name: APKs
