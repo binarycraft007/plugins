@@ -11,6 +11,10 @@ on:
       publish:
         description: 'Publish: If want ignore'
         required: false
+
+permissions:
+  contents: write
+
 jobs:
   build:
     name: Build
