@@ -79,10 +79,15 @@ download_tuic5() {
   VERSION="1.0.0-3"
   mkdir_libs "app_tuic5/libs"
 
-  dl_and_chmod arm64-v8a/libtuic.so "https://github.com/MatsuriDayo/tuic/releases/download/rel/tuic-client-"$VERSION"-aarch64-linux-android"
-  dl_and_chmod armeabi-v7a/libtuic.so "https://github.com/MatsuriDayo/tuic/releases/download/rel/tuic-client-"$VERSION"-armv7-linux-androideabi"
-  dl_and_chmod x86/libtuic.so "https://github.com/MatsuriDayo/tuic/releases/download/rel/tuic-client-"$VERSION"-i686-linux-android"
-  dl_and_chmod x86_64/libtuic.so "https://github.com/MatsuriDayo/tuic/releases/download/rel/tuic-client-"$VERSION"-x86_64-linux-android"
+  #dl_and_chmod arm64-v8a/libtuic.so "https://github.com/MatsuriDayo/tuic/releases/download/rel/tuic-client-"$VERSION"-aarch64-linux-android"
+  #dl_and_chmod armeabi-v7a/libtuic.so "https://github.com/MatsuriDayo/tuic/releases/download/rel/tuic-client-"$VERSION"-armv7-linux-androideabi"
+  #dl_and_chmod x86/libtuic.so "https://github.com/MatsuriDayo/tuic/releases/download/rel/tuic-client-"$VERSION"-i686-linux-android"
+  #dl_and_chmod x86_64/libtuic.so "https://github.com/MatsuriDayo/tuic/releases/download/rel/tuic-client-"$VERSION"-x86_64-linux-android"
+
+  cp ../../prodigy/tuic-client-"$VERSION"-aarch64-linux-android arm64-v8a/libtuic.so
+  cp ../../prodigy/tuic-client-"$VERSION"-armv7-linux-android armeabi-v7a/libtuic.so 
+  cp ../../prodigy/tuic-client-"$VERSION"-i686-linux-android x86/libtuic.so
+  cp ../../prodigy/tuic-client-"$VERSION"-x86_64-linux-android x86_64/libtuic.so
 }
 
 download_"$1"
